@@ -11,7 +11,9 @@ A tiny, no-dependency* way to get a Unicode/special-characters picker in **rofi*
 Save [charpick.sh](./charpick.sh) as `/usr/local/bin/charpick` (or anywhere on your `$PATH`) and make it executable.
 
 ```bash
-curl https://github.com/benjilegnard/rofi-charpick/charpick.sh -o /usr/local/bin/charpick
+git clone https://github.com/benjilegnard/rofi-charpick.git
+cd rofi-charpick
+sudo cp charpick.sh /usr/local/bin/charpick
 ```
 
 Make it executable:
@@ -56,9 +58,10 @@ Search in rofi matches anywhere on the line (names, codes, or tags).
   Start typing to fuzzy-filter (e.g., “arrow”, “degree”, “U+2192”).
 * Also type into the active window: `charpick -t`
 * Also print to stdout for scripts: `charpick -o`
+* Also can show a notification (you'll need notify-send) : `charpick -t`
 * Seed the query (e.g., bind in your WM/DE): `charpick "arrow"`
 
-A nice i3/sway binding example:
+A binding example for i3/sway :
 
 ```
 # sway
