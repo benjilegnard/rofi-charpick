@@ -11,6 +11,7 @@ ROFI_OPTS=(-dmenu -i -markup-rows -p "Pick char" -no-custom)
 # Default behaviour: copy to clipboard. Add -t to also type it, -o to print to stdout.
 DO_TYPE=false
 DO_PRINT=false
+DO_NOTIFY=false
 # ----------------------------------------------------------------
 
 usage() {
@@ -20,16 +21,18 @@ Options:
   -t        also type into active window (wtype or xdotool)
   -o        print to stdout (in addition to copying)
   -h        show help
+  -n        enable notification
 Notes:
   Put one or more *.tsv files in $CHAR_DIR with lines like:
     ✓\tU+2713\tcheck mark\tcheck tick yes
 EOF
 }
 
-while getopts ":toh" opt; do
+while getopts ":tonh" opt; do
   case $opt in
     t) DO_TYPE=true ;;
     o) DO_PRINT=true ;;
+    n) DO_NOTIFY=true ;;
     h) usage; exit 0 ;;
     \?) echo "Unknown option: -$OPTARG" >&2; usage; exit 1 ;;
   esac
@@ -140,7 +143,7 @@ fi
 
 $DO_PRINT && printf '%s\n' "$CHAR" || true
 
-if command -v notify-send >/dev/null 2>&1; then
+if $DO_NOTIFY && command -v notify-send >/dev/null 2>&1; then
   MSG="Copied ‘$CHAR’"
   $TYPED && MSG="$MSG and typed"
   notify-send "charpick" "$MSG"
