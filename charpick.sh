@@ -7,7 +7,7 @@ set -euo pipefail
 # Where your character lists live (TSV files). You can keep multiple.
 CHAR_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/charpick"
 # Rofi look & feel (tweak as you like)
-ROFI_OPTS=(-dmenu -i -markup-rows -p "Pick char" -no-custom)
+ROFI_OPTS=(-dmenu -i -markup-rows -p " ¶ Pick char " -no-custom)
 # Default behaviour: copy to clipboard. Add -t to also type it, -o to print to stdout.
 DO_TYPE=false
 DO_PRINT=false
